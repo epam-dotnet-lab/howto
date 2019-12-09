@@ -125,7 +125,7 @@ Changes to be committed:
 $ git diff --staged
 ```
 
-*Внимание* Всегда проверяйте ваши изменения перед тем как сделать commit!
+*Внимание!* Всегда проверяйте ваши изменения перед тем как сделать commit!
 
 10. Сделайте commit.
 
@@ -213,7 +213,7 @@ Time Elapsed 00:00:01.00
 
 Вывод предупреждений блокируется, так как для метода установлен атрибут SuppressMessage.
 
-*Внимание* Используйте SuppressMessage только для отключения вывода предупреждений и ошибок анализатора в конкретном месте текста приложения. Избегайте частого применения этого атрибута.
+*Внимание!* Используйте SuppressMessage только для отключения вывода предупреждений и ошибок анализатора в конкретном месте текста приложения. Избегайте частого применения этого атрибута.
 
 15. Зафиксируйте изменения.
 
@@ -252,7 +252,7 @@ ab59d60 Add MyConsoleApp project and MySolution solution.
 d90c94f (origin/master, origin/HEAD, master) Initial commit
 ```
 
-*Внимание* Всегда проверяйте ваши изменения на разных стадиях - unstaged, staged и после коммита!
+*Внимание!* Всегда проверяйте ваши изменения на разных стадиях - unstaged, staged и после коммита!
 
 ### Настройка анализатора с помощью набора правил
 
@@ -367,7 +367,7 @@ Build succeeded.
 24. Соберите проект.
 
 ```sh
-λ dotnet build --no-incremental
+$ dotnet build --no-incremental
 Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -410,7 +410,7 @@ Build FAILED.
 ```
 
 ```sh
-λ dotnet build --no-incremental
+$ dotnet build --no-incremental
 Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -431,7 +431,7 @@ public static class Program { }
 ```
 
 ```sh
-λ dotnet build --no-incremental
+$ dotnet build --no-incremental
 Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -470,7 +470,7 @@ Build FAILED.
 29. Соберите проект.
 
 ```sh
-$ dotnet build --no-incremental
+$ dotnet build
 Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -525,7 +525,7 @@ public static class Program
 ```
 
 ```sh
-λ dotnet build
+$ dotnet build
 Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
@@ -558,3 +558,37 @@ c7e5d78 Add FxCopAnalyzers package. Suppress warnings in Program.cs.
 ab59d60 Add MyConsoleApp project and MySolution solution.
 d90c94f (origin/master, origin/HEAD, master) Initial commit
 ```
+
+## Файл настроект .editorconfig
+
+Файл _.editorconfig_ используется для хранения настроек стиля исходного текста приложений. См. [Editorconfig для Visual Studio 2017](https://blog.zwezdin.com/2017/vs-2017-editorconfig/) и [Editorconfig](https://editorconfig.org/).
+
+33. Создайте новый файл _.editorconfig_ в каталоге, в котором находится _MySolution.sln_, и скопируйте в него пример [Example EditorConfig file](https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference#example-editorconfig-file).
+
+34. Зафиксируйте изменения.
+
+```sh
+$ git status
+$ git add .editorconfig
+$ git status
+$ git diff --staged
+$ git commit -m "Add .editorconfig file."
+$ git status
+$ git log --oneline
+1c17838 (HEAD -> adding-application-skeleton) Add .editorconfig file.
+36b66a0 Add StyleCop and enable documentation generation.
+33d21ce Add ruleset file and configure MyConsoleApp project to use the code-analisys.ruleset.
+c7e5d78 Add FxCopAnalyzers package. Suppress warnings in Program.cs.
+ab59d60 Add MyConsoleApp project and MySolution solution.
+d90c94f (origin/master, origin/HEAD, master) Initial commit
+```
+
+### Visual Studio
+
+Visual Studio поддерживает файл настроек .editorconfig и умеет обрабатывать большое количество параметров. См. [Code style preferences](https://docs.microsoft.com/en-us/visualstudio/ide/code-styles-and-code-cleanup) и [Create portable, custom editor settings with EditorConfig](https://docs.microsoft.com/en-us/visualstudio/ide/create-portable-custom-editor-options).
+
+Также, вы можете выполнить лабораторную работу [Working with EditorConfig in Visual Studio 2019](https://www.azuredevopslabs.com/labs/devopsserver/editorconfig), чтобы лучше понять работу файла настроек.
+
+### Visual Studio Code
+
+По-умолчанию VS Code не умеет работать с _.editorconfig_. Расширение [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) добавляет поддержку некоторых параметров файла настроек.
