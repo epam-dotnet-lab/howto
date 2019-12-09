@@ -17,7 +17,8 @@ $ git checkout -b adding-application-skeleton
 
 ### Особенности Git Bash для Windows
 
-Системы Windows используют "backslash" в файловых путях, а системы Linux и Mac - "slash". Поэтому для корректной работы командной строки в cmd.exe нужно использовать backslash. Однако, при работе в Windows через [Bash Shell (mingw64)](https://www.logicbig.com/tutorials/misc/git/git-bash-shell.html) нужно использовать "slash".
+Системы Windows используют "backslash" в файловых путях, а системы Linux и Mac - "slash". Поэтому для корректной работы командной строки в cmd.exe нужно использовать backslash. Однако, при работе в Windows через [Bash Shell (mingw64)](https://www.logicbig.com/tutorials/misc/git/git-bash-shell.html) нужно использовать "slash" .
+
 
 Например, правильный вызов команды для сборки проекта с применением "slash":
 
@@ -354,7 +355,7 @@ Build succeeded.
 
 Прочитайте описание ошибок в документации - [SA1200](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1200.md), [SA1400](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1400.md), [SA1633](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1633.md).
 
-23. Параметры правил StyleCop можно настроить в файле правил. Добавьте в _code-analysis.ruleset_:
+23. Параметры правил StyleCop можно настроить в файле правил. Добавьте дополнительные правила в _code-analysis.ruleset_:
 
 ```xml
 <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
@@ -364,7 +365,7 @@ Build succeeded.
 </Rules>
 ```
 
-24. Соберите проект.
+24. Соберите проект с параметром --no-incremental (помечает сборку как небезопасную для добавочной сборки, отключает инкрементную компиляцию, запуская только перестройку схемы зависимостей проекта).
 
 ```sh
 $ dotnet build --no-incremental
