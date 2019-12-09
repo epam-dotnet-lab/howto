@@ -635,3 +635,71 @@ bld/
 ```
 
 Файлы в каталоге _.vs_ и с указанными расширенями должны игнорироваться при работе _Git_.
+
+## Сохранение изменений в удаленный репозиторий
+
+35. Сохраните все изменения рабочей ветки в удаленный репозиторий.
+
+```sh
+$ git push --set-upstream origin adding-application-skeleton
+```
+
+Проверьте, что в репозитории _Github_ появилась ветка с указанным названием.
+
+36. Переместите все изменения из рабочей ветки в удаленную ветку _master_.
+
+```sh
+$ git checkout master
+$ git merge adding-application-skeleton --ff
+$ git push
+```
+
+## Настройка Continuous Integration
+
+Continuous Integration - это практика разработки, при которой изменения часто помещаются в общий репозиторий. Сразу после этого должна быть запущена сборка проекта и запуск тестов (если есть).
+
+### GitHub Actions
+
+См. видео [How to get started with GitHub Actions for Azure](https://www.youtube.com/watch?v=zcYqejz6Iig), также см. документацию [Creating continuous integration workflows](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-continuous-integration-workflows).
+
+Пример конфигурационного файла для сборки проекта .NET Core 3.0:
+
+```yaml
+name: .NET Core
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+```
+
+### Travis CI
+
+См. документацию [Building a C#, F#, or Visual Basic Project](https://docs.travis-ci.com/user/languages/csharp/#net-core). Используйте сервис [travis-ci.com](https://travis-ci.com/) для запуска сборки проекта и наблюдения за результатом.
+
+Пример конфигурационного файла .travis.yml (нужно положить в корневой каталог репозитория) для автоматической сборки проекта .NET Core 3.0:
+
+```yaml
+  
+os:
+  - linux
+language: csharp
+mono: none
+solution: MySolution.sln
+dotnet: 3.0.100
+install:
+  - dotnet restore
+script:
+  - dotnet build
+```
